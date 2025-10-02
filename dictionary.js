@@ -4,6 +4,7 @@ const search = document.getElementById("search");
 const sound = document.getElementById("sound");
 const searchButton = document.getElementById("searchButton");
 const output = document.getElementById("output");
+const btnIcon = document.querySelector(".btn-icon");
 
 const fetchWord = async (word) => {
   try {
@@ -22,13 +23,13 @@ const fetchWord = async (word) => {
       const wordHeading = document.createElement("div");
       wordHeading.innerHTML = `<div class='word-heading'><h3 class='word-text'>${
         entry.word
-      } (${
-        entryIndex + 1
-      })</h3>          <button class="btn-icon"><i class="fa-solid fa-volume-high"></i></button></div>`;
+      } (${entryIndex + 1})</h3></div>`;
       outputDiv.appendChild(wordHeading);
 
       const wordPhonetic = document.createElement("div");
-      wordPhonetic.innerHTML = `<p class='phonetic-text'>${entry.phonetic}</p>`;
+      wordPhonetic.innerHTML = `<div class='phonetic'><p class='phonetic-text'>${
+        entry.phonetic || ""
+      }</p></div>`;
       outputDiv.appendChild(wordPhonetic);
 
       // const wordAudio = document.createElement('audio');
@@ -37,29 +38,40 @@ const fetchWord = async (word) => {
         meaning.definitions.forEach((definition) => {
           const definitionDiv = document.createElement("div");
           definitionDiv.classList.add("definition");
-          const wordDefinition = document.createElement("p");
-          wordDefinition.innerHTML = `<div class='word-definition'><p class='definition'>${definition.definition}</p></div>`;
-          // outputDiv.appendChild(wordDefinition);
-          definitionDiv.appendChild(wordDefinition);
+          // const wordDefinition = document.createElement("p");
+          definitionDiv.innerHTML = ` <div class='word-definition'>
+      <span class='partofspeech-text'>(${meaning.partOfSpeech || ""})</span>
+      <span class='definition'>${definition.definition}</span>
+    </div>`;
+
+          if (definition.example) {
+            const exampleDiv = document.createElement("div");
+            exampleDiv.classList.add("word-example");
+            exampleDiv.textContent = `${definition.example}`;
+            definitionDiv.appendChild(exampleDiv);
+          }
+
           outputDiv.appendChild(definitionDiv);
         });
       });
 
-      // entry.meanings.forEach((meaning) => {
-      //   meaning.partOfSpeech.forEach((partOfSpeech) => {
-      //     const partOfSpeechP = document.createElement("p");
-      //     // partOfSpeechP.innerHTML = `<p>${entry.partOfSpeech}<p>`;
-      //     partOfSpeechP.textContent = `${partOfSpeech.partOfSpeech}`;
-
-      //     wordPhonetic.appendChild(partOfSpeech);
-      //   });
+      // entry.phonetics.forEach((phonetic) => {
+      //   if (phonetic.audio) {
+      //     // phoneticDiv.innerHTML = `<button class="btn-icon"><i class="fa-solid fa-volume-high"></i></button>`;
+      //     const btn = outputDiv.querySelector(".btn-icon");
+      //     btn.addEventListener("click", function () {
+      //       const audio = document.getElementById("sound");
+      //       // playAudio(`https:${phonetic.audio || ""}`);
+      //       audio.src = phonetic.audio.startsWith("https")
+      //         ? phonetic.audio
+      //         : `https:${phonetic.audio}`;
+      //       audio.play();
+      //       //
+      //       console.log("sound played");
+      //     });
+      //     outputDiv.appendChild(phoneticDiv);
+      //   }
       // });
-
-      entry.meanings.forEach((meaning) => {
-        const partOfSpeechP = document.createElement("p");
-        partOfSpeechP.textContent = meaning.partOfSpeech;
-        wordPhonetic.appendChild(partOfSpeechP);
-      });
 
       output.appendChild(outputDiv);
       // output.appendChild(none);
@@ -85,4 +97,9 @@ searchButton.addEventListener("click", function (e) {
 // window.addEventListener("load", function (e) {
 //   const statusDisplay = document.getElementById("status");
 //   statusDisplay.textContent = navigator.onLine ? 'online' : "offline";
+// });
+
+// btnIcon.addEventListener("click", function () {
+//   playAudio(`https:${phonetics.audio}`);
+//   // console.log('sound played ');
 // });
