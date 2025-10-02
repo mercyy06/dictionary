@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="dictionary.css" />
+    <script
+      src="https://kit.fontawesome.com/76ebed4063.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body
+    class="flex items-center justify-center min-h-full bg-[#800080]"
+    id="status"
+  >
+  <audio id="sound" src=""></audio>
+    <div
+      class="container w-[400px] md:w-[50%] bg-[#fff] flex flex-col items-center justify-center mt-10 ml-4 mr-4 pt-[4rem] pb-[4rem] rounded-[1.3rem]"
+    >
+      <h1 class="text-4xl mb-8 font-bold text-[#800080]">Dictionary</h1>
+      <!-- <div class="searchInp flex items-center  justify-between"> -->
+      <form action="">
+        <input
+          type="text"
+          id="search"
+          class="border-[#800080] text-[#800080] border-b-3 rounded-2xl pr-9 pl-2 pt-2 pb-2 focus:outline-none text-4"
+          placeholder="Search for a word..."
+        />
+        <button
+          class="bg-[#800080] pl-4 pr-4 pt-2 pb-2 rounded-[1rem] text-white hover:bg-[#660066]"
+          id="searchButton"
+        >
+          search
+        </button>
+      </form>
+      <!-- </div> -->
+       
+      <!-- <div id="output" class="text-[#0d000d]">
+        <div
+          class="outputWord flex items-center justify-between w-full mt-[2rem] p-3"
+        >
+          <h3 class="text-[1.5rem] font-bold text-[#4d4d4d]">Output</h3>
+          <button class="text-[#800080]"><i class="fa-solid fa-volume-high"></i></button>
+        </div>
+
+        <div
+          class="details p-3 flex gap-[1rem] mt-[0.1rem] mb-[2rem] text-[1.2rem]"
+        >
+          <p class="text-[#0d1b2a font-bold">pos</p>
+          <p class="text-[#0d1b2a] font-bold">/sample/</p>
+        </div>
+
+        <p class="word-meaning p-2 text-[#1b263b]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+          debitis natus. Ea, nemo perferendis. Ab culpa voluptates alias animi
+          nulla iusto eius porro quasi, provident molestias exercitationem?
+          Asperiores, accusantium illum?
+        </p>
+        <p class="word-example text-[#1b263b] pl-[0.6rem] pr-[2rem] ml-[2rem] mt-[1.5rem]">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto
+          necessitatibus ex excepturi optio aspernatur, debitis autem voluptate
+        </p>
+      </div> -->
+   
+      <div id="output"></div>
+    </div>
+
+    <script src="dictionary.js"></script>
+  </body>
+</html>
